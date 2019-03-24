@@ -13,8 +13,15 @@ public class List_inChainOfNodes{
     /**
       @return the number of elements in this list
      */
-    // public int size() {
-    // }
+     public int size() {
+		 int length = 0;
+		 Node cycleNode = headReference;
+		 while (cycleNode != null){
+			 cycleNode = cycleNode.getReferenceToNextNode();
+			 length++;
+		 }
+		 return length;
+     }
 
     
      /**
@@ -22,8 +29,16 @@ public class List_inChainOfNodes{
        format:
            # elements [element0,element1,element2,] 
       */
-    // public String toString() {
-    // }
+     public String toString() {
+		 String description = "# elements" + "[";
+		 Node cycleNode = headReference;
+		 while (cycleNode != null){
+			 description += cycleNode.getCargoReference() + ",";
+			 cycleNode = cycleNode.getReferenceToNextNode();
+		 }
+		 description += "]";
+		 return description;
+     }
     
     
     /**
@@ -32,6 +47,19 @@ public class List_inChainOfNodes{
       @return true, in keeping with conventions yet to be discussed
      */
      public boolean addAsHead( Object val) {
-        return true;
+		 Node copyNode = headReference;
+		 headReference = new Node(val, copyNode);
+         if (headReference != null) incrementIds();
+		 return true;
      }
+	 
+	 private void incrementIds () {
+	 	 Node cycleNode = headReference.getReferenceToNextNode();
+		 Node idNode = headReference;
+		 while (cycleNode != null){
+			 cycleNode.setId(idNode.getId() + 1);
+			 cycleNode = cycleNode.getReferenceToNextNode();
+			 idNode = idNode.getReferenceToNextNode();
+		 }
+	 }
 }

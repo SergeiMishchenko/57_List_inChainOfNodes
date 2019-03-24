@@ -7,19 +7,23 @@
 public class Node {
     private Object cargoReference;
     private Node   referenceToNextNode;
-
+    private int id; //the number of the node in the node list of chains of nodes
 
     /**
       Construct an instance
      */
     public Node( Object cargoReference) {
+		this.cargoReference = cargoReference;
     }
-    // public Node( Object cargoReference, Node referenceToNextNode) {
-        // /* For incremental development with the skeleton's UserOfNode,
-           // postpone writing this constructor until after the accessors.
-           // Then remove this comment, of course.
-         // */
-    // }
+	
+    public Node( Object cargoReference, Node referenceToNextNode) {
+         /* For incremental development with the skeleton's UserOfNode,
+            postpone writing this constructor until after the accessors.
+            Then remove this comment, of course.
+        / */
+		this(cargoReference);
+		this.referenceToNextNode = referenceToNextNode;
+    }
 
     /**
       @return a string representation of this instance
@@ -27,7 +31,7 @@ public class Node {
     public String toString() {
         String result =
             cargoReference.toString()  // polymorphically use appropriately toString!
-          + " id " // include a usually-unique identifier for this node
+          + " id: " + id + " " // include a usually-unique identifier for this node
           + super.toString()
           ;
 
@@ -38,13 +42,24 @@ public class Node {
         return result;
     }
 
-    // // classic accessor and mutator
-    // public Node getReferenceToNextNode() {
-    // }
+     // classic accessor and mutator
+     public Node getReferenceToNextNode() {
+		 return referenceToNextNode;
+     }
 
-    // public void setReferenceToNextNode( Node referenceToNextNode) {
-    // }
+     public void setReferenceToNextNode( Node referenceToNextNode) {
+		 this.referenceToNextNode = referenceToNextNode;
+     }
     
-    // public Object getCargoReference() {
-    // }
+	 public void setId( int id) { 
+		 this.id = id;
+     }
+	 
+     public int getId() { 
+		 return id;
+     }
+	
+     public Object getCargoReference() {
+		 return cargoReference;
+     }
 }
