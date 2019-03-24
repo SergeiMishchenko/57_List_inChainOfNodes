@@ -31,7 +31,7 @@ public class Node {
     public String toString() {
         String result =
             cargoReference.toString()  // polymorphically use appropriately toString!
-          + " id: " + id + " " // include a usually-unique identifier for this node
+          + " id: " + cargoReference.hashCode() + " " // include a usually-unique identifier for this node
           + super.toString()
           ;
 

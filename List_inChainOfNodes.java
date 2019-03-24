@@ -49,17 +49,7 @@ public class List_inChainOfNodes{
      public boolean addAsHead( Object val) {
 		 Node copyNode = headReference;
 		 headReference = new Node(val, copyNode);
-         if (headReference != null) incrementIds();
 		 return true;
      }
 	 
-	 private void incrementIds () {
-	 	 Node cycleNode = headReference.getReferenceToNextNode();
-		 Node idNode = headReference;
-		 while (cycleNode != null){
-			 cycleNode.setId(idNode.getId() + 1);
-			 cycleNode = cycleNode.getReferenceToNextNode();
-			 idNode = idNode.getReferenceToNextNode();
-		 }
-	 }
 }
