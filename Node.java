@@ -50,14 +50,10 @@ public class Node {
      public void setReferenceToNextNode( Node referenceToNextNode) {
 		 this.referenceToNextNode = referenceToNextNode;
      }
-    
-	 public void setId( int id) { 
-		 this.id = id;
-     }
 	 
-     public int getId() { 
-		 return id;
-     }
+     public void setCargoReference( Object cargoReference) {
+		 this.cargoReference = cargoReference;
+     }    
 	
      public Object getCargoReference() {
 		 return cargoReference;
