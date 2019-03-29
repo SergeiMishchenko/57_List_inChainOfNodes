@@ -25,5 +25,24 @@ public class UserOfList {
         }
         System.out.println( "populated list: " + list
                           + System.lineSeparator());
+		
+		//Tests middle case
+		System.out.println("Test:" + System.lineSeparator()
+		                   +"set: " + list.set(1, "v") + ", expecting v" 
+		                   + System.lineSeparator()
+						   + "get: " + list.get(2) + ", expecting u"
+						   + System.lineSeparator()
+        //Tests edge case
+                           + "get: " + list.get(0) + ", expecting S"
+						   + System.lineSeparator()
+						                              + "get: " + list.get(1) + ", expecting S"
+						   + System.lineSeparator()
+                           + "set: " + list.set(0, "x") + ", expecting x" 		
+		                   + System.lineSeparator()
+						   + "get: " + list.get(3) + ", expecting y"
+		                   + System.lineSeparator()
+						   + "set: " + list.set(3, "w") + ", expecting w"
+						   + System.lineSeparator()
+						   + "new edited list: " + list);								   
     }
 }

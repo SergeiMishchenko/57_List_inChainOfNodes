@@ -28,16 +28,17 @@ public class List_inChainOfNodes{
        @return a string representation of this list,
        format:
            # elements [element0,element1,element2,] 
+		   
+		Iterated though a chan of notdes using a simple for:
       */
      public String toString() {
 		 String description = "# elements" + "[";
-		 Node cycleNode = headReference;
-		 while (cycleNode != null){
-			 description += cycleNode.getCargoReference() + ",";
-			 cycleNode = cycleNode.getReferenceToNextNode();
-		 }
-		 description += "]";
-		 return description;
+		 for (Node cycleNode = headReference; 
+		      cycleNode != null;
+			  cycleNode = cycleNode.getReferenceToNextNode())
+			  description += cycleNode.getCargoReference();
+	     description += "]";
+		return description;
      }
     
     
@@ -53,36 +54,39 @@ public class List_inChainOfNodes{
      }
 
      public boolean addIndex(int index, Object val) { //assumes that index is a valid index
-		 int counter = 0;
-		 Node previousNode = headReference;
-		 while (counter != index - 1 && previousNode != null){
-			 counter++;
-			 previousNode = previousNode.getReferenceToNextNode();
+		 if (index == 0) addAsHead (val);
+		 else{
+			int counter = 0;
+			Node previousNode = getNode(index - 1);
+			Node referenceOfPreviousNode = previousNode.getReferenceToNextNode();
+			Node addedNode = new Node(val, referenceOfPreviousNode);
+			previousNode.setReferenceToNextNode(addedNode);
 		 }
-		 Node referenceOfPreviousNode = previousNode.getReferenceToNextNode();
-		 Node addedNode = new Node(val, referenceOfPreviousNode);
-		 previousNode.setReferenceToNextNode(addedNode);
 		 return true;
      }	 
 	
-	public void set( int index, Object newValue ) {
-        Node indexedReference = get(index);
+	public Object set( int index, Object newValue ) {
+        Node indexedReference = getNode(index);
 		indexedReference.setCargoReference(newValue);
+		return get (index);
     }
 	
-    public Node get( int index ) {
+    public Node getNode ( int index ) {
         // cycles through the list in chain of nodes. Assumes that the index is a valid index 
 		Node cycleNode = headReference;
-		for (int counter  = 0; counter < index + 1 && cycleNode != null; counter++){
+		for (int counter  = 0; counter < index  && cycleNode != null; counter++){
 			cycleNode = cycleNode.getReferenceToNextNode();
-			counter++;
 		}
         return cycleNode;
     }
+	
+	public Object get (int index) {
+		return getNode(index).getCargoReference();
+	}
 	 
 	 public void remove( int index) {
-        Node removedNode = get(index);
-		Node previousNode = get (index -1);
+        Node removedNode = getNode(index);
+		Node previousNode = getNode (index -1);
 		previousNode.setReferenceToNextNode(removedNode.getReferenceToNextNode());
      }
 }
